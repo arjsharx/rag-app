@@ -50,8 +50,8 @@ def get_vectorstore(text_chunks):
 
 
 def get_conversation_chain(vectorstore):
-    llm = HuggingFaceHub(repo_id="deepseek-ai/DeepSeek-R1", model_kwargs={"temperature": 0.5, "max_length": 512})
-
+    llm = HuggingFaceHub(repo_id="google/gemma-2-2b-it", model_kwargs={"temperature": 0.5, "max_length": 512})
+    llm.client.api_url = 'https://api-inference.huggingface.co/models/google/gemma-2-2b-it'
     memory = ConversationBufferMemory(
         memory_key='chat_history', return_messages=True)
     conversation_chain = ConversationalRetrievalChain.from_llm(
